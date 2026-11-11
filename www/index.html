@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10131a">
+  <meta name="description" content="King M1 Bet World — sports betting interface demo using virtual coins only.">
+  <title>King M1 Bet World — Play Money Demo</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    :root{color-scheme:dark;--bg:#10131a;--panel:#1b202b;--panel2:#242a37;--gold:#ffc700;--muted:#a9b0bf;--green:#32d296;--red:#ff6677;--line:#333a49}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f8fb;font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding:0 0 calc(32px + env(safe-area-inset-bottom))}
+    button,input{font:inherit}button{border:0;cursor:pointer;font-weight:700;border-radius:10px;padding:11px 14px}button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:2px}
+    .shell{max-width:980px;margin:auto;padding:16px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+    .brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#171717;font-size:24px}.brand h1{font-size:18px;margin:0}.brand small,.muted{color:var(--muted)}.mode{font-size:11px;letter-spacing:.08em;background:#312a12;color:var(--gold);padding:6px 9px;border-radius:99px;white-space:nowrap}
+    .hero{margin-top:14px;padding:16px;border:1px solid #534615;background:linear-gradient(125deg,#30280c,#1b202b 68%);border-radius:16px}.hero strong{color:var(--gold)}.hero p{margin:5px 0 0;color:#d9dce4;font-size:13px}
+    .wallet{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:15px 16px;background:var(--panel);border-radius:14px}.wallet b{display:block;color:var(--gold);font-size:24px}.wallet small{color:var(--muted)}.secondary{background:var(--panel2);color:white}
+    .nav{display:flex;gap:8px;overflow:auto;margin:14px 0;padding-bottom:3px}.nav button,.sports button{background:var(--panel2);color:#e9ebf1;white-space:nowrap}.nav button.active,.sports button.active{background:var(--gold);color:#171717}.sports{display:flex;gap:7px;overflow:auto;padding:2px 0 8px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}.card-head{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px}.demo-tag{color:var(--gold)}.teams{font-size:17px;font-weight:750;margin:12px 0}.odds{display:flex;gap:8px}.odd{flex:1;background:var(--panel2);color:white;border:1px solid transparent;min-width:0}.odd span{display:block;font-size:11px;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.odd b{display:block;font-size:16px;margin-top:3px}.odd.chosen{border-color:var(--gold);background:#3a310e;color:var(--gold)}
+    .empty{text-align:center;padding:30px 12px;color:var(--muted)}.ticket{position:sticky;bottom:8px;background:#202632;border:1px solid #66540e;border-radius:15px;padding:14px;margin-top:18px;box-shadow:0 8px 26px #0008}.ticket-title{display:flex;justify-content:space-between;align-items:center}.ticket h2{font-size:16px;margin:0}.ticket select,.ticket input,.login input{width:100%;margin-top:9px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#11151d;color:white}.gold{background:var(--gold);color:#171717;width:100%;margin-top:10px}.gold:disabled{opacity:.5;cursor:not-allowed}.row{display:flex;justify-content:space-between;gap:10px;margin-top:9px;color:var(--muted);font-size:13px}.history-item{padding:10px 0;border-bottom:1px solid var(--line)}.history-item:last-child{border:0}.won{color:var(--green)}.lost{color:var(--red)}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:10px 7px;border-bottom:1px solid var(--line)}.table th{color:var(--gold);font-size:12px}.table .you{background:#39300d;color:var(--gold)}.notice{font-size:12px;color:var(--muted);margin:14px 2px}.login{position:fixed;inset:0;z-index:5;background:#10131af2;display:grid;place-items:center;padding:18px}.login-box{max-width:390px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:center}.login-box .logo{margin:auto;width:64px;height:64px;font-size:32px}.login-box h2{color:var(--gold);margin:12px 0 5px}.login-box p{color:var(--muted);font-size:13px}.login-box label{display:flex;align-items:flex-start;gap:8px;text-align:left;font-size:12px;color:var(--muted);margin-top:12px}.login-box label input{width:auto;margin:2px 0}.toast{position:fixed;top:15px;left:50%;transform:translateX(-50%);background:#263044;padding:12px 16px;border-radius:10px;z-index:9;display:none}
+    @media(min-width:700px){.shell{padding:24px}.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.match-grid .card{margin:0}.ticket{max-width:620px;margin:18px auto 0}}
+  </style>
+</head>
+<body>
+  <div id="ageGate" class="login" hidden>
+    <div class="login-box"><div class="logo" aria-hidden="true">👑</div><h2>KING M1 BET WORLD</h2><p>Sports interface demonstration · virtual coins only</p>
+      <input id="playerName" maxlength="24" autocomplete="name" placeholder="Choose a display name" aria-label="Display name">
+      <label><input id="ageCheck" type="checkbox"> I confirm I am 18 or older. I understand this demo uses virtual coins only and does not accept or pay real money.</label>
+      <button id="enterBtn" class="gold">ENTER DEMO</button><p>No deposits, withdrawals, prizes, or real-money wagering.</p>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <main class="shell">
+    <header class="top"><div class="brand"><div class="logo" aria-hidden="true">👑</div><div><h1>KING M1 BET WORLD</h1><small id="welcome">Play money demo</small></div></div><span class="mode">DEMO · NO CASH</span></header>
+    <section class="hero"><strong>Play-money demo</strong><p>Explore a sample sports betting interface with fictional fixtures and virtual coins. Scores and bet outcomes are simulated; no live sports data or real-money gambling is provided.</p></section>
+    <section class="wallet" aria-label="Virtual coin balance"><div><small>Virtual balance</small><b><span id="balance">1,000</span> <small>coins</small></b></div><button id="resetBtn" class="secondary">Reset demo balance</button></section>
+    <nav class="nav" aria-label="Main navigation"><button class="active" data-page="matches">Matches</button><button data-page="bets">My bets</button><button data-page="board">Leaderboard</button><button data-page="about">About</button></nav>
+    <section id="page-matches"><div id="sports" class="sports" aria-label="Filter by sport"></div><div id="matches" class="match-grid"></div></section>
+    <section id="page-bets" hidden><div class="card"><h2>My demo bets</h2><div id="history"></div><button id="settleBtn" class="gold">Settle pending demo bets</button></div></section>
+    <section id="page-board" hidden><div class="card"><h2>Demo leaderboard</h2><p class="muted">Sample players only. This is not a real ranking.</p><div id="leaderboard"></div></div></section>
+    <section id="page-about" hidden><div class="card"><h2>About this demo</h2><p>This is a local, play-money prototype. It does not connect to a sportsbook, provide live odds, accept deposits, pay winnings, or include verified sports results. Virtual coins have no cash value.</p><p><b>Responsible play:</b> This demo is intended for adults. If gambling is affecting you or someone close to you, stop and seek local professional support.</p><p class="muted">This prototype is not a licensed betting service and should not be represented as one.</p></div></section>
+    <section id="ticket" class="ticket"><div class="ticket-title"><h2>Bet slip</h2><button id="clearBtn" class="secondary" style="padding:7px 10px">Clear</button></div><div id="selection" class="muted" style="margin-top:8px">Choose an outcome to start a demo bet.</div><label for="stake">Stake (virtual coins)</label><input id="stake" type="number" min="1" step="1" value="100" inputmode="numeric"><div class="row"><span>Potential return</span><b id="potential">—</b></div><button id="placeBtn" class="gold" disabled>PLACE DEMO BET</button></section>
+    <p class="notice">18+ · Virtual coins only · No cash prizes · Sample fixtures and simulated outcomes · Not a real betting service.</p>
+  </main>
+<script>
+(()=>{'use strict';
+const KEY='kmb_demo_v1';
+const fixtures=[
+ {id:'m1',sport:'Football',league:'Botswana · Sample match',home:'Township Rollers',away:'Gaborone United',time:'Demo fixture',odds:[1.8,3.2,4.0]},
+ {id:'m2',sport:'Football',league:'England · Sample match',home:'Manchester City',away:'Arsenal',time:'Demo fixture',odds:[2.1,3.4,3.3]},
+ {id:'m3',sport:'Football',league:'Spain · Sample match',home:'Real Madrid',away:'Barcelona',time:'Demo fixture',odds:[2.4,3.5,2.7]},
+ {id:'m4',sport:'Tennis',league:'Sample tournament',home:'Player A',away:'Player B',time:'Demo fixture',odds:[1.75,null,2.05]},
+ {id:'m5',sport:'Rugby',league:'Sample international',home:'South Africa',away:'New Zealand',time:'Demo fixture',odds:[1.85,null,1.95]},
+ {id:'m6',sport:'Basketball',league:'Sample league',home:'Team A',away:'Team B',time:'Demo fixture',odds:[2.0,null,1.8]},
+ {id:'m7',sport:'Cricket',league:'Sample match',home:'Team C',away:'Team D',time:'Demo fixture',odds:[1.9,null,1.9]},
+ {id:'m8',sport:'Boxing',league:'Sample bout',home:'Fighter A',away:'Fighter B',time:'Demo fixture',odds:[2.1,null,1.7]}
+];
+const labels=['Home','Draw','Away'];let state;try{state=JSON.parse(localStorage.getItem(KEY)||'{}')}catch{state={}}
+state={name:typeof state.name==='string'?state.name:'',balance:Number.isFinite(state.balance)?state.balance:1000,bets:Array.isArray(state.bets)?state.bets:[],bonusDate:state.bonusDate||''};
+let sport='All',selection=null;
+const $=id=>document.getElementById(id);const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}function toast(s){const t=$('toast');t.textContent=s;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',2600)}
+function render(){ $('balance').textContent=Math.floor(state.balance).toLocaleString();$('welcome').textContent=state.name?'Welcome, '+state.name:'Play money demo';renderSports();renderMatches();renderHistory();renderBoard();updateTicket(); }
+function renderSports(){let sports=['All',...new Set(fixtures.map(x=>x.sport))];$('sports').innerHTML=sports.map(x=>`<button class="${sport===x?'active':''}" data-sport="${esc(x)}">${esc(x)}</button>`).join('')}
+function renderMatches(){let list=fixtures.filter(x=>sport==='All'||sport===x.sport);$('matches').innerHTML=list.map(m=>`<article class="card"><div class="card-head"><span>${esc(m.sport)} · ${esc(m.league)}</span><span class="demo-tag">${esc(m.time)}</span></div><div class="teams">${esc(m.home)} <span class="muted">vs</span> ${esc(m.away)}</div><div class="odds">${m.odds.map((o,i)=>o==null?'':`<button class="odd ${selection&&selection.fixture===m.id&&selection.outcome===i?'chosen':''}" data-fixture="${m.id}" data-outcome="${i}" aria-label="${esc(labels[i])} ${i===0?esc(m.home):i===1?'Draw':esc(m.away)}, odds ${o}"><span>${i===0?esc(m.home):i===1?'Draw':esc(m.away)}</span><b>${o.toFixed(2)}</b></button>`).join('')}</div></article>`).join('')||'<div class="empty">No sample fixtures.</div>'}
+function renderHistory(){if(!state.bets.length){$('history').innerHTML='<div class="empty">No demo bets yet. Pick a sample fixture to try it.</div>';return} $('history').innerHTML=state.bets.slice().reverse().map(b=>`<div class="history-item"><b>${esc(b.match)}</b><div class="muted">${esc(b.pick)} @ ${Number(b.odds).toFixed(2)} · Stake ${b.stake} coins</div><div class="${b.status==='won'?'won':b.status==='lost'?'lost':''}">${b.status==='pending'?'Pending simulated settlement':b.status==='won'?'SIMULATED WIN · +'+b.payout+' coins':'SIMULATED LOSS · -'+b.stake+' coins'}</div></div>`).join('')}
+function renderBoard(){let rows=[{name:'Thabo (sample)',coins:5420},{name:'Neo (sample)',coins:3890},{name:'Kabelo (sample)',coins:3120},{name:state.name||'You',coins:state.balance,you:true}].sort((a,b)=>b.coins-a.coins);$('leaderboard').innerHTML='<table class="table"><thead><tr><th>#</th><th>Player</th><th>Coins</th></tr></thead><tbody>'+rows.map((p,i)=>`<tr class="${p.you?'you':''}"><td>${i+1}</td><td>${esc(p.name)}${p.you?' (You)':''}</td><td>${Math.floor(p.coins).toLocaleString()}</td></tr>`).join('')+'</tbody></table>'}
+function updateTicket(){if(selection){const f=fixtures.find(x=>x.id===selection.fixture);$('selection').innerHTML=`<b>${esc(f.home)} vs ${esc(f.away)}</b><br>${esc(selection.pick)} @ ${selection.odds.toFixed(2)}`}else $('selection').textContent='Choose an outcome to start a demo bet.';let stake=Number($('stake').value);$('potential').textContent=selection&&stake>0?Math.round(stake*selection.odds).toLocaleString()+' coins':'—';$('placeBtn').disabled=!selection||!Number.isInteger(stake)||stake<=0||stake>state.balance}
+function page(name){document.querySelectorAll('[id^="page-"]').forEach(el=>el.hidden=el.id!=='page-'+name);document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===name));$('ticket').hidden=name==='about'}
+$('sports').addEventListener('click',e=>{let b=e.target.closest('[data-sport]');if(!b)return;sport=b.dataset.sport;renderSports();renderMatches()});$('matches').addEventListener('click',e=>{let b=e.target.closest('[data-fixture]');if(!b)return;let f=fixtures.find(x=>x.id===b.dataset.fixture),i=Number(b.dataset.outcome);selection={fixture:f.id,outcome:i,pick:labels[i]==='Home'?f.home:labels[i]==='Away'?f.away:'Draw',odds:f.odds[i]};renderMatches();updateTicket()});$('stake').addEventListener('input',updateTicket);
+document.querySelector('.nav').addEventListener('click',e=>{let b=e.target.closest('[data-page]');if(b)page(b.dataset.page)});
+$('clearBtn').addEventListener('click',()=>{selection=null;renderMatches();updateTicket()});$('placeBtn').addEventListener('click',()=>{if(!selection)return;let stake=Number($('stake').value);if(!Number.isInteger(stake)||stake<=0||stake>state.balance){toast('Enter a valid virtual-coin stake.');return}let f=fixtures.find(x=>x.id===selection.fixture);state.balance-=stake;state.bets.push({match:f.home+' vs '+f.away,pick:selection.pick,odds:selection.odds,stake,status:'pending',payout:0,created:Date.now()});selection=null;save();render();toast('Demo bet placed with virtual coins.')});
+$('settleBtn').addEventListener('click',()=>{let pending=state.bets.filter(b=>b.status==='pending');if(!pending.length){toast('There are no pending demo bets.');return}pending.forEach(b=>{b.status=Math.random()<0.45?'won':'lost';if(b.status==='won'){b.payout=Math.round(b.stake*b.odds);state.balance+=b.payout}});save();render();toast('Demo bets settled with simulated outcomes.')});
+$('resetBtn').addEventListener('click',()=>{if(!confirm('Reset virtual balance to 1,000 coins? Bet history will remain.'))return;state.balance=1000;save();render();toast('Demo balance reset.')});
+$('enterBtn').addEventListener('click',()=>{let name=$('playerName').value.trim();if(!name){toast('Enter a display name.');return}if(!$('ageCheck').checked){toast('Confirm that you are 18 or older to continue.');return}state.name=name;save();$('ageGate').hidden=true;render()});
+if(!state.name){$('ageGate').hidden=false}else{$('ageGate').hidden=true}render();
+if('serviceWorker'in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
+</body>
+</html>
